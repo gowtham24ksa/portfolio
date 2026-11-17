@@ -786,7 +786,7 @@ footer{padding:40px 0 48px;font-size:13.5px;color:var(--ink-3);display:flex;just
     /* nav spy */
     var nav = document.getElementById('nav'), ind = nav.querySelector('.nav-ind'), links = nav.querySelectorAll('a.link');
     function mark(id){
-      links.forEach(function(l){ var on = l.dataset.spy===id; l.classList.toggle('on', on); if(on){ var pr=nav.querySelector('.nav-inner').getBoundingClientRect(), lr=l.getBoundingClientRect(); ind.style.left=(lr.left-pr.left)+'px'; ind.style.top=(lr.top-pr.top)+'px'; ind.style.width=lr.width+'px'; ind.style.height=lr.height+'px'; ind.style.opacity=1; } });
+      links.forEach(function(l){ var on = l.dataset.spy===id; l.classList.toggle('on', on); if(on){ ind.style.left=l.offsetLeft+'px'; ind.style.top=l.offsetTop+'px'; ind.style.width=l.offsetWidth+'px'; ind.style.height=l.offsetHeight+'px'; ind.style.opacity=1; } });
       nav.dataset.cur=id||'';
       if(!id){ ind.style.opacity=0; links.forEach(function(l){ l.classList.remove('on'); }); }
     }
