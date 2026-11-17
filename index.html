@@ -48,7 +48,8 @@ mark.a{background:linear-gradient(transparent 58%,var(--after-soft) 58%)}
 
 /* glass with cursor light */
 .glass{position:relative;background:var(--glass);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);border:1px solid var(--glass-edge);box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95)}
-.spot::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.75),rgba(255,255,255,0) 60%)}
+.spot::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s;z-index:0;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.5),rgba(255,255,255,0) 60%)}
+.spot>*{position:relative;z-index:1}
 .spot:hover::after{opacity:1}
 
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
@@ -59,8 +60,8 @@ mark.a{background:linear-gradient(transparent 58%,var(--after-soft) 58%)}
 .nav.compact .nav-inner{transform:scale(.94)}
 .nav-name{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-.01em;margin-right:12px}
 .nav a.link{position:relative;z-index:1;font-size:14px;font-weight:500;color:var(--ink-2);padding:8px 13px;border-radius:999px;transition:color .2s}
-.nav a.link.on{color:var(--ink)}
-.nav-ind{position:absolute;top:6px;height:34px;border-radius:999px;background:rgba(15,23,48,.07);opacity:0;transition:left .35s cubic-bezier(.2,.7,.2,1),width .35s cubic-bezier(.2,.7,.2,1),opacity .2s}
+.nav a.link.on{color:#1B33B0}
+.nav-ind{position:absolute;top:6px;height:34px;border-radius:999px;background:var(--after-soft);opacity:0;transition:left .35s cubic-bezier(.2,.7,.2,1),width .35s cubic-bezier(.2,.7,.2,1),opacity .2s}
 .nav a.cv{font-size:14px;font-weight:600;color:#fff;background:var(--ink);padding:9px 16px;border-radius:999px;margin-left:8px;transition:background .2s,transform .2s}
 .nav a.cv:hover{background:var(--after);transform:translateY(-1px)}
 @media (max-width:720px){.nav a.link,.nav-ind{display:none}.nav-inner{padding-left:14px}}
@@ -216,7 +217,7 @@ section{padding:100px 0}
 .story dt{font-weight:600;color:var(--ink-3);transition:color .3s}
 .story dd{color:var(--ink-2)}
 @media (min-width:901px){
-  .story.scrolly>div{opacity:.5}
+  .story.scrolly>div{opacity:.6}
   .story.scrolly>div.on{opacity:1;background:rgba(255,255,255,.55)}
   .story.scrolly>div.on[data-state="before"]{border-left-color:var(--before)}
   .story.scrolly>div.on[data-state="after"]{border-left-color:var(--after)}
@@ -257,6 +258,13 @@ section{padding:100px 0}
 .edu li{display:flex;justify-content:space-between;gap:16px}
 .edu li span{color:var(--ink-3);white-space:nowrap}
 @media (max-width:640px){.edu{grid-template-columns:1fr}}
+.skills{display:grid;grid-template-columns:repeat(4,1fr);margin-top:16px;border-radius:var(--r-lg);overflow:hidden}
+.skills>div{padding:24px 26px;border-left:1px solid var(--line)}
+.skills>div:first-child{border-left:0}
+.skills h3{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.01em;margin-bottom:8px}
+.skills p{font-size:14px;line-height:1.55;color:var(--ink-2)}
+@media (max-width:900px){.skills{grid-template-columns:1fr 1fr}.skills>div:nth-child(3){border-left:0}.skills>div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:560px){.skills{grid-template-columns:1fr}.skills>div{border-left:0;border-top:1px solid var(--line)}.skills>div:first-child{border-top:0}}
 
 /* contact */
 .contact{padding:56px;border-radius:var(--r-lg);display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
@@ -312,6 +320,7 @@ footer{padding:40px 0 48px;font-size:13.5px;color:var(--ink-3);display:flex;just
         <span>MBA, IIM Bangalore 2026</span>
         <span>CFA Level I</span>
         <span>BE Computer Science, CEG</span>
+        <span>34 months’ experience</span>
         <span>Bengaluru</span>
       </div>
     </div>
@@ -419,18 +428,18 @@ footer{padding:40px 0 48px;font-size:13.5px;color:var(--ink-3);display:flex;just
 
     <article class="case">
       <div class="case-text">
-        <p class="case-kicker">Sambalam, 2026, designed and shipped solo with an AI coding agent</p>
+        <p class="case-kicker">Sambalam for Viruksham, 2026, designed and shipped solo with an AI coding agent</p>
         <h3>A Tamil wage app that replaced a contractor's notebook</h3>
         <dl class="story scrolly">
-          <div data-state="before"><dt>Problem</dt><dd>A contractor in Tamil Nadu paid <mark class="b">₹2L+ a week</mark> in cash from a paper notebook. One slip and a crew got paid wrong.</dd></div>
+          <div data-state="before"><dt>Problem</dt><dd>A contractor in Tamil Nadu paid <mark class="b">₹2L+ a week</mark> in wages and vendor dues from a paper notebook. <mark class="b">Six hours</mark> of reconciliation a week, and one slip meant a crew got paid wrong.</dd></div>
           <div data-state="before"><dt>Insight</dt><dd>He asked for expense totals. He needed <mark class="a">the balance left after advances</mark>. His margins were full of those sums.</dd></div>
           <div data-state="after"><dt>Decision</dt><dd>No typing for daily entry. Weekly settlement that deducts advances itself. Per-crew locking. <b>Tamil by default</b>, works offline.</dd></div>
-          <div data-state="after"><dt>Result</dt><dd><mark class="b">Half the sites</mark> used it at first. I sat with the ones who had stopped, fixed what they pointed at. Now <mark class="a">all of them</mark> run on it.</dd></div>
+          <div data-state="after"><dt>Result</dt><dd><mark class="b">Half the sites</mark> used it at first. The stall traced to wage entries you couldn't edit once saved. Fixed that, and now <mark class="a">all the sites</mark> run on it.</dd></div>
         </dl>
         <div class="metrics">
           <span><b>₹2L+ a week</b>paper settlements replaced</span>
           <span><b>50% → all sites</b>adoption after user interviews</span>
-          <span><b>0 typing</b>for daily entry</span>
+          <span><b>6 hrs a week</b>of reconciliation gone</span>
         </div>
         <div class="tags"><span>Product discovery</span><span>Vernacular UX</span><span>Domain modelling</span><span>Offline-first</span><span>AI-assisted build</span></div>
       </div>
@@ -571,7 +580,6 @@ footer{padding:40px 0 48px;font-size:13.5px;color:var(--ink-3);display:flex;just
   <div class="wrap">
     <div class="section-head">
       <h2><span>How I work</span></h2>
-      <p>The same three habits, whether the user is a Citibank relationship manager or a mason in Mettupalayam.</p>
     </div>
     <div class="approach glass spot">
       <article>
@@ -594,7 +602,6 @@ footer{padding:40px 0 48px;font-size:13.5px;color:var(--ink-3);display:flex;just
   <div class="wrap">
     <div class="section-head">
       <h2><span>Experience</span></h2>
-      <p>Where the work above happened.</p>
     </div>
     <div class="xp">
       <article class="glass spot">
@@ -602,18 +609,29 @@ footer{padding:40px 0 48px;font-size:13.5px;color:var(--ink-3);display:flex;just
         <div>
           <h3>Associate, PwC India <span>Digital Integration, Bengaluru</span></h3>
           <ul>
-            <li>Took over an AI tool that turns product demo videos into requirement documents (Azure AI Foundry). Rebuilt the hard-coded prompting so it works across inputs and ranks requirements with MoSCoW.</li>
-            <li>Scoped Microsoft Planner as the practice's project tool and shipped a Power Automate flow that turns email and Teams action items into tracked tasks. In daily use.</li>
+            <li>Own a GenAI tool that turns product demo videos into requirement documents on Azure AI Foundry. Rebuilt its hard-coded prompting so it works across input types.</li>
+            <li>Leading requirements definition for Hindustan Unilever's onboarding transformation across HR, facilities, travel and IT.</li>
+            <li>Specified and shipped a Power Automate flow that turns email and Teams action items into tracked tasks, after scoping Planner as the practice's delivery tool. In daily use.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="glass spot">
+        <time>Feb to Jul 2026</time>
+        <div>
+          <h3>Product Manager, Viruksham <span>internship</span></h3>
+          <ul>
+            <li>Designed and shipped Sambalam, replacing paper settlement of ₹2L+ a week in wages and vendor dues and removing six hours of weekly reconciliation, for a user who reads no English.</li>
+            <li>Took adoption from 50% to near-complete by tracing the stall to non-editable wage entries and shipping the fix.</li>
           </ul>
         </div>
       </article>
       <article class="glass spot">
         <time>Apr to May 2025</time>
         <div>
-          <h3>Business Consultant, TCS Strategic Leadership Program <span>MBA internship</span></h3>
+          <h3>Business Consultant, TCS Strategic Leadership Program <span>internship</span></h3>
           <ul>
-            <li>Led discovery across finance, sourcing and operations to define 50+ KPIs, then launched 7 Power BI dashboards on SAP/ERP data, adopted by 15+ plant managers.</li>
-            <li>Wrote the business case for Analytics-as-a-Service and purchase-order automation, finding ₹3.45Cr in procurement savings. Got a pre-placement offer.</li>
+            <li>Ran discovery with finance, sourcing and operations to define 50+ KPIs and built 7 Power BI dashboards on SAP/ERP data, giving 15+ plant managers one view across plants.</li>
+            <li>Found ₹3.45Cr in procurement savings from vendor pricing analysis and ₹3.1Cr of excess stock from a demand model, releasing ₹25L+ in working capital. Pre-placement offer received.</li>
           </ul>
         </div>
       </article>
@@ -622,9 +640,9 @@ footer{padding:40px 0 48px;font-size:13.5px;color:var(--ink-3);display:flex;just
         <div>
           <h3>Software Developer, Wipro Technologies <span>Citibank engagement, Chennai</span></h3>
           <ul>
-            <li>Built a custom CRM platform for Citibank's relationship managers. Proposed and owned the prospect module that won Wipro $1.56M more business from Citibank.</li>
-            <li>Wrote 10+ feature PRDs and worked through 300+ user stories with Citibank's product owner in the US, cutting requirement rework by 30% across 15 releases.</li>
-            <li>Launched a portfolio analytics dashboard with automatic renewal alerts for HNI and institutional clients, taking renewal rates from 60% to 75%.</li>
+            <li>Spotted prospect tracking as an upstream gap in Citibank's CRM programme and owned a standalone module from spec to launch with a team of 10, winning Wipro $1.56M in new account revenue.</li>
+            <li>Took daily adoption from 60% to 85% by diagnosing bulk-loading latency as the barrier and rebuilding record retrieval from 20 s to under 1 s. Doubled manager capacity, 40 to 80 accounts, with 8 automated workflows.</li>
+            <li>Cut requirement rework 30% across 15 releases with 10+ feature specs and 300+ user stories scoped with the client's US product owner. Absorbed 50% more transaction volume on the same infrastructure by re-architecting the REST APIs and data pipelines.</li>
           </ul>
         </div>
       </article>
@@ -642,11 +660,17 @@ footer{padding:40px 0 48px;font-size:13.5px;color:var(--ink-3);display:flex;just
       <article class="glass spot">
         <h3>Recognition</h3>
         <ul>
-          <li>Top 1% of 30,000+ in SBI IdeationX, reinvention strategy for SBI Life <span>2025</span></li>
+          <li>Top 1% of 30,000+ in SBI IdeationX 2.0, reinvention strategy for SBI Life <span>2025</span></li>
           <li>Pre-placement offer, TCS Strategic Leadership Program <span>2025</span></li>
-          <li>Bright Beginning Award, Wipro, for accelerating delivery by 30% <span>2024</span></li>
+          <li>Bright Beginning Award, Wipro, 1 of 40+, for accelerating delivery by 30% <span>2024</span></li>
         </ul>
       </article>
+    </div>
+    <div class="skills glass spot">
+      <div><h3>Product</h3><p>Product strategy and roadmap, discovery, user research, PRDs and user stories, MVP definition, backlog prioritisation, product metrics, stakeholder management</p></div>
+      <div><h3>AI and automation</h3><p>Building MCP servers, AI agents with tool-use loops, Claude Code, Azure AI Foundry (GPT models), prompt engineering, Power Automate, Power Apps</p></div>
+      <div><h3>Data and engineering</h3><p>SQL, Power BI, Excel, adoption and usage analysis, Java, Python, REST APIs, microservices, system design, Git, Jenkins</p></div>
+      <div><h3>Domain</h3><p>Retail and corporate banking, CRM and client onboarding workflows, HNI and institutional segments, construction payroll</p></div>
     </div>
   </div>
 </section>
@@ -762,12 +786,15 @@ footer{padding:40px 0 48px;font-size:13.5px;color:var(--ink-3);display:flex;just
     /* nav spy */
     var nav = document.getElementById('nav'), ind = nav.querySelector('.nav-ind'), links = nav.querySelectorAll('a.link');
     function mark(id){
-      links.forEach(function(l){ var on = l.dataset.spy===id; l.classList.toggle('on', on); if(on){ ind.style.left=l.offsetLeft+'px'; ind.style.width=l.offsetWidth+'px'; ind.style.opacity=1; } });
+      links.forEach(function(l){ var on = l.dataset.spy===id; l.classList.toggle('on', on); if(on){ var pr=nav.querySelector('.nav-inner').getBoundingClientRect(), lr=l.getBoundingClientRect(); ind.style.left=(lr.left-pr.left)+'px'; ind.style.top=(lr.top-pr.top)+'px'; ind.style.width=lr.width+'px'; ind.style.height=lr.height+'px'; ind.style.opacity=1; } });
+      nav.dataset.cur=id||'';
       if(!id){ ind.style.opacity=0; links.forEach(function(l){ l.classList.remove('on'); }); }
     }
     var secs = ['work','approach','experience','contact'].map(function(i){ return document.getElementById(i); });
     var so = new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) mark(en.target.id); }); }, {rootMargin:'-35% 0px -55% 0px'});
     secs.forEach(function(s){ so.observe(s); });
+    function remark(){ if(nav.dataset.cur) mark(nav.dataset.cur); }
+    window.addEventListener('resize', remark); if(document.fonts) document.fonts.ready.then(remark);
     new IntersectionObserver(function(es){ if(es[0].isIntersecting) mark(null); nav.classList.toggle('compact', !es[0].isIntersecting); }, {threshold:.6}).observe(hero);
   }
 })();
